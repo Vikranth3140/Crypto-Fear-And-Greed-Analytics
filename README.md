@@ -95,7 +95,6 @@ python src/visualize_data.py
 
 ### Visualization
 ![Fear and Greed Index Chart](fig.png)
-<img src="fig.png" alt="Fear and Greed Index Chart" width="500" height="400">
 
 ### Statistics
 ```
