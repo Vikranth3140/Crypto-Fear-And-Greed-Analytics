@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 def plot_fear_and_greed(csv_file):
     """Plot the Fear and Greed Index over time."""
     df = pd.read_csv(csv_file)
-    df["timestamp"] = pd.to_datetime(df["timestamp"])  # Ensure timestamp is in datetime format
+    df["timestamp"] = pd.to_datetime(df["timestamp"])\
 
     plt.figure(figsize=(10, 6))
     plt.plot(df["timestamp"], df["value"], label="Fear and Greed Index", marker="o")
