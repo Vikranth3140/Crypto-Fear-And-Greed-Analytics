@@ -6,7 +6,7 @@ def process_data(raw_data):
     data_list = raw_data.get("data", [])
     df = pd.DataFrame(data_list)
     # Convert UNIX timestamps to datetime
-    df["timestamp"] = pd.to_datetime(df["timestamp"], unit="s")
+    df["timestamp"] = pd.to_datetime(pd.to_numeric(df["timestamp"]), unit="s")
     return df
 
 def calculate_statistics(df):
