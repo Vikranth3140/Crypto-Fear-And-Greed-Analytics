@@ -1,8 +1,6 @@
 import requests
-import os
-
-# Load API key from environment variables or config file
-API_KEY = os.getenv("CMC_API_KEY") or "your_api_key_here"
+import json
+from config import API_KEY
 
 # API endpoint
 BASE_URL = "https://pro-api.coinmarketcap.com/v3/fear-and-greed/historical"
@@ -25,9 +23,15 @@ def fetch_fear_and_greed_data(start=None, limit=50):
     else:
         raise Exception(f"Failed to fetch data: {response.status_code} - {response.text}")
 
+def save_data_to_file(data, filename):
+    """Save fetched data to a JSON file."""
+    with open(filename, "w") as file:
+        json.dump(data, file, indent=4)
+    print(f"Data saved to {filename}")
+
 if __name__ == "__main__":
     try:
         data = fetch_fear_and_greed_data(limit=100)
-        print(data)
+        save_data_to_file(data, "../data/raw/fear_greed.json")
     except Exception as e:
         print(e)
