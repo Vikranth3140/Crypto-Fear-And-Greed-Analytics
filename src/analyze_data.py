@@ -18,6 +18,11 @@ def calculate_statistics(df):
     }
     return stats
 
+def save_to_csv(df, filename):
+    """Save the DataFrame to a CSV file."""
+    df.to_csv(filename, index=False)
+    print(f"Data saved to {filename}")
+
 if __name__ == "__main__":
     with open("../data/raw/fear_greed.json", "r") as file:
         raw_data = json.load(file)
@@ -26,3 +31,4 @@ if __name__ == "__main__":
     print(df.head())
     stats = calculate_statistics(df)
     print("Statistics:", stats)
+    save_to_csv(df, "../data/processed/fear_greed.csv")
