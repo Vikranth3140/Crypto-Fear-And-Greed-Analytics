@@ -5,7 +5,8 @@ def process_data(raw_data):
     """Convert JSON data to a Pandas DataFrame."""
     data_list = raw_data.get("data", [])
     df = pd.DataFrame(data_list)
-    df["timestamp"] = pd.to_datetime(df["timestamp"])
+    # Convert UNIX timestamps to datetime
+    df["timestamp"] = pd.to_datetime(df["timestamp"], unit="s")
     return df
 
 def calculate_statistics(df):
@@ -22,4 +23,6 @@ if __name__ == "__main__":
         raw_data = json.load(file)
     
     df = process_data(raw_data)
-    print(calculate_statistics(df))
+    print(df.head())
+    stats = calculate_statistics(df)
+    print("Statistics:", stats)
